@@ -1,0 +1,46 @@
+---
+id: {{SPEC_ID}}
+domain: architecture
+status: draft
+owns:
+{{OWNED_PATHS}}
+---
+# {{TITLE}}
+
+## Purpose
+
+{{PURPOSE}}
+
+## Scope
+
+{{SCOPE}}
+
+## Inputs
+
+{{INPUTS}}
+
+## Outputs
+
+{{OUTPUTS}}
+
+## Responsibilities
+
+{{RESPONSIBILITIES}}
+
+## Dependencies
+
+{{DEPENDENCIES}}
+
+## Acceptance Criteria
+
+{{ACCEPTANCE_CRITERIA}}
+
+## Traceability
+
+- Parent component: {{PARENT_COMPONENT}}
+- Related specs: {{RELATED_SPECS}}
+- Implementation targets: {{IMPLEMENTATION_TARGETS}}
+
+## Validation
+
+{{VALIDATION}}

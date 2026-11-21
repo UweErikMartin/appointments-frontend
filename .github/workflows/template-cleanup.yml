@@ -1,0 +1,34 @@
+name: template-cleanup
+on:
+  push:
+    branches: [main]
+permissions:
+  contents: write
+jobs:
+  cleanup:
+    name: Personalize template
+    if: github.event.repository.is_template == false
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Personalize from template
+        shell: pwsh
+        env:
+          REPOSITORY_OWNER: ${{ github.repository_owner }}
+          REPOSITORY_NAME: ${{ github.event.repository.name }}
+        run: pwsh -NoProfile -ExecutionPolicy Bypass -File ./tools/template/bootstrap.ps1 -RepositoryOwner "$env:REPOSITORY_OWNER" -RepositoryName "$env:REPOSITORY_NAME" -Apply
+      - name: Commit personalization
+        shell: pwsh
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git diff --cached --quiet
+          if ($LASTEXITCODE -ne 0) {
+            git commit -m "chore: personalize SDD template for $env:GITHUB_REPOSITORY"
+            if ($LASTEXITCODE -ne 0) { throw "Failed to commit template personalization." }
+            git push
+            if ($LASTEXITCODE -ne 0) { throw "Failed to push template personalization." }
+          } else {
+            Write-Host "No personalization changes to commit."
+          }

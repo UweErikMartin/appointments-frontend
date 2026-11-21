@@ -1,0 +1,41 @@
+---
+id: {{SPEC_ID}}
+domain: testing
+status: draft
+owns:
+{{OWNED_PATHS}}
+---
+# {{TITLE}}
+
+## Purpose
+
+{{PURPOSE}}
+
+## Scope
+
+{{SCOPE}}
+
+## Inputs
+
+{{INPUTS}}
+
+## Outputs
+
+{{OUTPUTS}}
+
+## Acceptance Scenarios
+
+{{ACCEPTANCE_SCENARIOS}}
+
+## Acceptance Criteria
+
+{{ACCEPTANCE_CRITERIA}}
+
+## Traceability
+
+- Related specs: {{RELATED_SPECS}}
+- Implementation targets: {{IMPLEMENTATION_TARGETS}}
+
+## Validation
+
+{{VALIDATION}}

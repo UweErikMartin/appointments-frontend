@@ -1,0 +1,54 @@
+---
+id: {{SPEC_ID}}
+domain: build
+status: draft
+owns:
+{{OWNED_PATHS}}
+---
+# {{TITLE}}
+
+## Purpose
+
+{{PURPOSE}}
+
+## Scope
+
+{{SCOPE}}
+
+## Inputs
+
+{{INPUTS}}
+
+## Outputs
+
+{{OUTPUTS}}
+
+## Build Contract
+
+{{BUILD_CONTRACT}}
+
+## Local Development Impact
+
+{{LOCAL_DEV_IMPACT}}
+
+## CI/CD Impact
+
+{{CI_CD_IMPACT}}
+
+## Artifact Impact
+
+{{ARTIFACT_IMPACT}}
+
+## Acceptance Criteria
+
+{{ACCEPTANCE_CRITERIA}}
+
+## Traceability
+
+- Related specs: {{RELATED_SPECS}}
+- Implementation targets: {{IMPLEMENTATION_TARGETS}}
+- Generated or derived files: {{GENERATED_FILES}}
+
+## Validation
+
+{{VALIDATION}}

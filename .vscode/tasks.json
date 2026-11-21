@@ -1,0 +1,11 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    { "label": "SDD: Validate specs", "type": "process", "command": "pwsh", "windows": { "command": "powershell" }, "options": { "cwd": "${workspaceFolder}" }, "args": ["-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "./tools/sdd/validate-specs.ps1"], "group": "test", "problemMatcher": [] },
+    { "label": "SDD: Check traceability", "type": "process", "command": "pwsh", "windows": { "command": "powershell" }, "options": { "cwd": "${workspaceFolder}" }, "args": ["-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "./tools/sdd/check-traceability.ps1"], "group": "test", "problemMatcher": [] },
+    { "label": "SDD: Verify build specs", "type": "process", "command": "pwsh", "windows": { "command": "powershell" }, "options": { "cwd": "${workspaceFolder}" }, "args": ["-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "./tools/sdd/verify-build-spec.ps1"], "group": "test", "problemMatcher": [] },
+    { "label": "SDD: Test validators", "type": "process", "command": "pwsh", "windows": { "command": "powershell" }, "options": { "cwd": "${workspaceFolder}" }, "args": ["-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "./tools/sdd/test-validators.ps1"], "group": "test", "problemMatcher": [] },
+    { "label": "Template: Dry-run update from template", "type": "process", "command": "pwsh", "windows": { "command": "powershell" }, "options": { "cwd": "${workspaceFolder}" }, "args": ["-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "./tools/template/update-from-template.ps1"], "group": "build", "problemMatcher": [] },
+    { "label": "Dev: Doctor", "type": "process", "command": "pwsh", "windows": { "command": "powershell" }, "options": { "cwd": "${workspaceFolder}" }, "args": ["-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "./tools/dev/doctor.ps1"], "group": "build", "problemMatcher": [] }
+  ]
+}

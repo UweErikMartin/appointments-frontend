@@ -1,0 +1,16 @@
+# OS and editor noise
+.DS_Store
+Thumbs.db
+*.swp
+*~
+
+# Local environment overrides
+.env
+.env.*
+
+# Ephemeral build and test output
+artifacts/tmp/
+**/*.log
+
+# Keep tracked, generated SDD artifacts (do not ignore):
+#   artifacts/generated/** is committed and verified by tools/sdd/generate-build-files.ps1

@@ -1,0 +1,45 @@
+---
+id: {{SPEC_ID}}
+domain: architecture
+status: draft
+owns:
+{{OWNED_PATHS}}
+---
+# {{TITLE}}
+
+## Purpose
+
+{{PURPOSE}}
+
+## Scope
+
+{{SCOPE}}
+
+## Inputs
+
+{{INPUTS}}
+
+## Outputs
+
+{{OUTPUTS}}
+
+## Interface Contract
+
+{{INTERFACE_CONTRACT}}
+
+## Compatibility
+
+{{COMPATIBILITY}}
+
+## Acceptance Criteria
+
+{{ACCEPTANCE_CRITERIA}}
+
+## Traceability
+
+- Related specs: {{RELATED_SPECS}}
+- Implementation targets: {{IMPLEMENTATION_TARGETS}}
+
+## Validation
+
+{{VALIDATION}}

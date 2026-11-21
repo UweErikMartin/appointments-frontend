@@ -1,0 +1,2 @@
+# Ensure all text files are checked out and committed with LF endings.
+* text=auto eol=lf

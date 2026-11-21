@@ -1,0 +1,50 @@
+---
+id: {{SPEC_ID}}
+domain: product
+status: draft
+owns:
+{{OWNED_PATHS}}
+---
+# {{TITLE}}
+
+## Purpose
+
+{{PURPOSE}}
+
+## Scope
+
+{{SCOPE}}
+
+## Inputs
+
+{{INPUTS}}
+
+## Outputs
+
+{{OUTPUTS}}
+
+## Behavior Contract
+
+{{BEHAVIOR_CONTRACT}}
+
+## Acceptance Criteria
+
+{{ACCEPTANCE_CRITERIA}}
+
+## Test Strategy
+
+{{TEST_STRATEGY}}
+
+## Build Impact
+
+{{BUILD_IMPACT}}
+
+## Traceability
+
+- Related specs: {{RELATED_SPECS}}
+- Implementation targets: {{IMPLEMENTATION_TARGETS}}
+- Generated or derived files: {{GENERATED_FILES}}
+
+## Validation
+
+{{VALIDATION}}

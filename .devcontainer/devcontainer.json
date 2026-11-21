@@ -1,0 +1,17 @@
+{
+  "name": "SDD Template",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+  "features": {
+    "ghcr.io/devcontainers/features/powershell:1": {}
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "github.copilot-chat",
+        "ms-vscode.powershell",
+        "github.vscode-github-actions"
+      ]
+    }
+  },
+  "postCreateCommand": "pwsh -ExecutionPolicy Bypass -File ./tools/dev/doctor.ps1"
+}
