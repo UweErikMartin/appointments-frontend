@@ -1,13 +1,13 @@
 # Default ownership for SDD template governance.
-* @repo-owners
+* @UweErikMartin
 
 # Build and validation behavior is governed by specs/build/.
-.github/workflows/ @repo-owners
-tools/sdd/ @repo-owners
-tools/dev/ @repo-owners
-build/ @repo-owners
-specs/build/ @repo-owners
+.github/workflows/ @UweErikMartin
+tools/sdd/ @UweErikMartin
+tools/dev/ @UweErikMartin
+build/ @UweErikMartin
+specs/build/ @UweErikMartin
 
 # Security expectations are governed by specs/architecture/security/.
-SECURITY.md @repo-owners
-specs/architecture/security/ @repo-owners
+SECURITY.md @UweErikMartin
+specs/architecture/security/ @UweErikMartin
