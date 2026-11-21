@@ -62,6 +62,7 @@ powershell -ExecutionPolicy Bypass -File ./tools/dev/doctor.ps1
 - SDD validator behavior is covered by deterministic local tests.
 - Validator tests invoke nested PowerShell validation commands through the available PowerShell host, using `pwsh` in CI and falling back to `powershell` where needed locally, while capturing expected child-process failures as test output.
 - Validator tests keep temporary Git repository setup deterministic and isolate native Git stderr so benign native-tool output does not fail CI PowerShell steps.
+- Validator test subprocesses do not inherit the caller's GitHub pull request event or base ref; tests may explicitly supply their own context to exercise traceability validation.
 - Validator tests explicitly exit successfully after all expected failure cases pass so CI shell wrappers do not reuse a stale native-process exit code.
 - New feature, executable, subcomponent, and build-system specs are created from `build/templates/specs/` through `tools/sdd/new-spec-set.ps1`.
 - Build-system validation checks that required workflow, governance, prompt, generator, and spec-template artifacts exist.

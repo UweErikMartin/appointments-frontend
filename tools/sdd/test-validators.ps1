@@ -17,6 +17,8 @@ if ($isWindowsHost) {
 
 function Invoke-PowerShellTestCommand([string]$Command) {
     $previousErrorActionPreference = $ErrorActionPreference
+    $previousEventPath = $env:GITHUB_EVENT_PATH
+    $previousBaseRef = $env:GITHUB_BASE_REF
     $previousNativeErrorPreference = $null
     $hasNativeErrorPreference = Test-Path variable:PSNativeCommandUseErrorActionPreference
     if ($hasNativeErrorPreference) {
@@ -24,12 +26,16 @@ function Invoke-PowerShellTestCommand([string]$Command) {
     }
     try {
         $ErrorActionPreference = "Continue"
+        $env:GITHUB_EVENT_PATH = $null
+        $env:GITHUB_BASE_REF = $null
         if ($hasNativeErrorPreference) {
             $global:PSNativeCommandUseErrorActionPreference = $false
         }
         & $powerShellCommand @powerShellArguments -Command $Command 2>&1
     } finally {
         $ErrorActionPreference = $previousErrorActionPreference
+        $env:GITHUB_EVENT_PATH = $previousEventPath
+        $env:GITHUB_BASE_REF = $previousBaseRef
         if ($hasNativeErrorPreference) {
             $global:PSNativeCommandUseErrorActionPreference = $previousNativeErrorPreference
         }
@@ -202,15 +208,34 @@ function Add-ValidSpecSet([string]$Root) {
 
 Invoke-ExpectSuccess "valid spec set passes validation" { param($root) Add-ValidSpecSet $root } "Set-Location '__ROOT__'; ./tools/sdd/validate-specs.ps1"
 
-Invoke-ExpectSuccess "personalized CODEOWNERS passes traceability" {
-    param($root)
+function Add-TraceabilityFixture([string]$root) {
     Copy-SddScripts $root
     foreach ($path in @(".github/pull_request_template.md", "AGENTS.md", "SECURITY.md")) {
         Write-TestFile $root $path "Controlling Spec`nBuild-system impact`ncheck-traceability.ps1`nGenerated or derived files`nDefinition Of Ready`nDefinition Of Done`nReporting A Vulnerability`nSDD Security Expectations"
     }
     Write-TestFile $root "CODEOWNERS" "* @product-team"
     Write-TestFile $root "specs/product/features/demo.spec.md" (New-SpecContent "product.features.demo" "product" "active" @("specs/product/features/demo.spec.md"))
-} "Set-Location '__ROOT__'; ./tools/sdd/check-traceability.ps1"
+    Write-TestFile $root "event.json" '{"pull_request":{"body":""}}'
+}
+
+$previousEventPath = $env:GITHUB_EVENT_PATH
+$previousBaseRef = $env:GITHUB_BASE_REF
+try {
+    Invoke-ExpectSuccess "personalized CODEOWNERS ignores inherited GitHub context" {
+        param($root)
+        Add-TraceabilityFixture $root
+        $env:GITHUB_EVENT_PATH = Join-Path $root "event.json"
+        $env:GITHUB_BASE_REF = "HEAD~1"
+    } "Set-Location '__ROOT__'; if (`$env:GITHUB_EVENT_PATH -or `$env:GITHUB_BASE_REF) { exit 1 }; ./tools/sdd/check-traceability.ps1"
+} finally {
+    $env:GITHUB_EVENT_PATH = $previousEventPath
+    $env:GITHUB_BASE_REF = $previousBaseRef
+}
+
+Invoke-ExpectFailure "explicit pull request event is validated" {
+    param($root)
+    Add-TraceabilityFixture $root
+} "Set-Location '__ROOT__'; `$env:GITHUB_EVENT_PATH = Join-Path (Get-Location) 'event.json'; ./tools/sdd/check-traceability.ps1" "Pull request body is missing required section: ## Controlling Spec"
 
 Invoke-ExpectSuccessWithAssertion "bootstrap dry-run apply and idempotence" {
     param($root)
