@@ -10,7 +10,7 @@ jobs:
     if: github.event.repository.is_template == false
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Personalize from template
         shell: pwsh
         env:

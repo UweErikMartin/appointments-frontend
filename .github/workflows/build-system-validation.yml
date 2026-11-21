@@ -10,7 +10,7 @@ jobs:
     name: Verify build-system specs
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Validate specs
         shell: pwsh
         run: pwsh -NoProfile -ExecutionPolicy Bypass -File ./tools/sdd/validate-specs.ps1
